@@ -7,6 +7,7 @@ export function Home({ ctx }: RequestInfo) {
         {ctx.user?.username
           ? `You are logged in as user ${ctx.user.username}`
           : "You are not logged in ##"}
+          <p>funker</p>
       </p>
     </div>
   );
