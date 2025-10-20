@@ -3,6 +3,7 @@ import { render, route } from "rwsdk/router";
 import { Document } from "./app/Document";
 import Home from "./app/pages/Home";
 import AdminPage from "./app/pages/AdminPage";
+import BookingInfo from "./app/pages/BookingInfo";
 
 import { User, users } from "./db/schema/user-schema";
 import { setCommonHeaders } from "./app/headers";
@@ -23,5 +24,6 @@ export default defineApp([
   render(Document, [
     route("/", Home),
     route("/admin", AdminPage),
+    route("/booking-info", BookingInfo),
   ]),
 ]);
