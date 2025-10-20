@@ -1,14 +1,8 @@
-import { RequestInfo } from "rwsdk/worker";
-
-export function Home({ ctx }: RequestInfo) {
+export default function Home() {
   return (
-    <div>
-      <p>
-        {ctx.user?.username
-          ? `You are logged in as user ${ctx.user.username}`
-          : "You are not logged in ##"}
-          <p>funker</p>
-      </p>
-    </div>
+    <main>
+      <h1>Home Page</h1>
+      <p>Welcome to the home page!</p>
+    </main>
   );
 }
