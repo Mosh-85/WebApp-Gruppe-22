@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-export function LandingPage() {
+function LandingPage() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         navn: '',
@@ -31,3 +31,4 @@ export function LandingPage() {
     );
 }
 
+export default LandingPage;
