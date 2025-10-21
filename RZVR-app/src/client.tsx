@@ -1,3 +1,14 @@
-import { initClient } from "rwsdk/client";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import Home from "./Home";
+import { AppContext } from "./worker";
 
-initClient();
+const container = document.getElementById("root");
+const root = createRoot(container!);
+
+const ctx: AppContext = {
+    user: { id: 1, username: "Sophia" }, 
+    authUrl: "/login",
+};
+
+root.render(<Home ctx={ctx} />);

@@ -1,5 +1,4 @@
 // src/app/Document.tsx
-
 import styles from "./styles.css?url";
 
 export const Document: React.FC<{ children: React.ReactNode }> = ({
@@ -17,5 +16,7 @@ export const Document: React.FC<{ children: React.ReactNode }> = ({
       <div id="root">{children}</div>
       <script>import("/src/client.tsx")</script>
     </body>
+    <div>
+    </div>
   </html>
 );

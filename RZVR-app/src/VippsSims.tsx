@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export function VippsSims() {
+function VippsSims() {
     const [payment, setPayment] = useState(false);
 
     const handlePayment = () => {
@@ -17,3 +17,5 @@ export function VippsSims() {
         </div>
     );
 }
+
+export default VippsSims;

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export function AdminLandingPage() {
+function AdminLandingPage() {
     const [ifLogin, setIfLogin ] = useState(false);
 
     return (
@@ -16,3 +16,5 @@ export function AdminLandingPage() {
         </div>
     );
 }
+
+export default AdminLandingPage;

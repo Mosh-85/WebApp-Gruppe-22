@@ -1,6 +1,6 @@
 import React, { useState } from "react"; 
 
-export default function ReactEmail() {
+function ReactEmail() {
 const [open, setOpen] = useState(false);
 const [to, setTo] = useState("");
 
@@ -24,3 +24,5 @@ return (
 </div>
 );
 }
+
+export default ReactEmail;

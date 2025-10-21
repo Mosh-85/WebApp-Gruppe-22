@@ -1,12 +1,14 @@
 import { defineApp } from "rwsdk/worker";
 import { render, route } from "rwsdk/router";
-import { Document } from "@/app/Document";
-import { Home } from "@/app/pages/Home";
-
+import { Document } from "./Document";
 import { User, users } from "./db/schema/user-schema";
-import { setCommonHeaders } from "./app/headers";
+import { setCommonHeaders } from "./headers";
 import { env } from "cloudflare:workers";
 import { drizzle } from "drizzle-orm/d1";
+import VippsSims from "./VippsSims";
+import ReactEmail from "./ReactEmail";
+import Home from "./Home";
+import AdminLandingPage from "./AdminLandingPage";
 
 export interface Env {
   DB: D1Database;
@@ -50,16 +52,26 @@ export default defineApp([
         </div>
       );
     }),
-    route("/home", [
-      ({ ctx }) => {
+    route("/home", async (info) => {
+      const ctx = info.ctx as AppContext & typeof info.ctx;
+
+      ctx.user ??= { id: 1, username: "username"};
+
         if (!ctx.user) {
           return new Response(null, {
             status: 302,
             headers: { Location: "/" },
           });
         }
-      },
-      Home,
+
+        return <Home ctx={ctx} />;
+      }),
+      route ("/vipps", async ({ ctx }) => {
+        return (
+          <div>
+            <AdminLandingPage />
+          </div>
+        );
+      }),
     ]),
-  ]),
-]);
+  ]);
