@@ -9,6 +9,7 @@ import { User, users } from "./db/schema/user-schema";
 import { setCommonHeaders } from "./app/headers";
 import { env } from "cloudflare:workers";
 import { drizzle } from "drizzle-orm/d1";
+import TableCreateForm from "./app/components/Admin/TableCreateForm";
 
 export interface Env {
   DB: D1Database;
@@ -25,5 +26,6 @@ export default defineApp([
     route("/", Home),
     route("/admin", AdminPage),
     route("/booking-info", BookingInfo),
+    route("/Table", TableCreateForm)
   ]),
 ]);
