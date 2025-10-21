@@ -24,7 +24,6 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
 
     return (
         <form ref={formRef} className="space-y-4" onSubmit={handleSubmit}>
-            <h2>Booking Form</h2>
             <input type="text" name="fullName" placeholder="For og etternavn" required className="w-full p-2 border rounded" />
             <input type="number" name="people" placeholder="Antal personer" min={1} required className="w-full p-2 border rounded" />
             <input type="email" name="email" placeholder="E-post" required className="w-full p-2 border rounded" />
