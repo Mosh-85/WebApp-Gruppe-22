@@ -55,7 +55,7 @@ export default defineApp([
     route("/home", async (info) => {
       const ctx = info.ctx as AppContext & typeof info.ctx;
 
-      ctx.user ??= { id: 1, username: "username"};
+      ctx.user ??= { id: 1, name: "username", email: ""};
 
         if (!ctx.user) {
           return new Response(null, {

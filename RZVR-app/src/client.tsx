@@ -7,7 +7,7 @@ const container = document.getElementById("root");
 const root = createRoot(container!);
 
 const ctx: AppContext = {
-    user: { id: 1, username: "Sophia" }, 
+    user: { id: 1, name: "Sophia", email: "" }, 
     authUrl: "/login",
 };
 

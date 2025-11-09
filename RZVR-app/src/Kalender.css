@@ -1,0 +1,92 @@
+.kalender-page {
+    background-color: #ccc;
+    min-height:100v;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    color: #303030;
+    padding-top:2rem;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.kalender-title {
+    font-size: 1.25rem;
+    color:#1a1c1a;
+    margin-bottom: 1.5rem;
+}
+
+.kalender-container{
+    background: #fff;
+    color: #242423;
+    border-radius: 16px;
+    padding:1.5rem;
+    width:700px;
+    box-shadow: 0 4px 12px #637f71;
+}
+
+.kalender-header{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    gap:1rem;
+    margin-bottom:1rem;
+}
+
+.nav-btn{
+    background: transparent;
+    border: none;
+    font-size:1rem;
+    cursor:pointer;
+    color:#5f5d61;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+}
+
+.nav-btn:hover{
+    background:#1a1919;
+}
+
+.kalender-date{
+    font-weight:500;
+}
+
+.kalender-table{
+    width:100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.kalender-table th{
+    background:#1b172b00;
+    padding: 8px;
+    border: 1px solid #2c2a2b; 
+}
+
+.kalender-table td {
+    border: 1px solid #3e363e;
+    height:50px;
+    vertical-align:top;
+    padding:6px;
+}
+
+.time-cell{
+    font-weight:500;
+    text-align:center;
+    background:#959494;
+}
+
+.reserved {
+    background-color:#8dfeda;
+}
+
+.reserved-text {
+    font-weight:0.8rem;
+    font-weight:600;
+    color:#0e0b0b;
+}
+
+.reserved-text2 {
+    font-size:0.7rem;
+    color: #120f0f;
+}
