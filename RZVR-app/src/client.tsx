@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Home from "./Home";
+import Home from "./app/Home";
 import { AppContext } from "./worker";
 
 const container = document.getElementById("root");

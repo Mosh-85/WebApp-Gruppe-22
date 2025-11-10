@@ -1,13 +1,14 @@
 import { RequestInfo } from "rwsdk/worker";
 import VippsSims from "./VippsSims";
 import ReactEmail from "./ReactEmail";
-import { AppContext } from "./worker";
+import { AppContext } from "../worker";
 import AdminLandingPage from "./AdminLandingPage";
 import Kalender from "./Kalender";
 import Innstillinger from "./Innstillinger";
 import FunctionConfirmationOfBooking from "./FunctionConfirmationOfBooking";
 import FunctionResend from "./FunctionResend";
 import { BookingInfo } from "./BookingInfo";
+import ModifiserBord from "./ModifiserBord";
 
 interface HomeProps {
   ctx: AppContext;
@@ -30,6 +31,7 @@ function Home({ ctx }: HomeProps) {
         <BookingInfo />
         <ReactEmail />
         <VippsSims />
+        <ModifiserBord />
         </section>
       </div>
   );

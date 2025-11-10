@@ -1,14 +1,14 @@
 import { defineApp } from "rwsdk/worker";
 import { render, route } from "rwsdk/router";
 import { Document } from "./Document";
-import { User, users } from "./db/schema/user-schema";
+import { User, users } from "./app/lib/db/schema/user-schema";
 import { setCommonHeaders } from "./headers";
 import { env } from "cloudflare:workers";
 import { drizzle } from "drizzle-orm/d1";
-import VippsSims from "./VippsSims";
-import ReactEmail from "./ReactEmail";
-import Home from "./Home";
-import AdminLandingPage from "./AdminLandingPage";
+import VippsSims from "./app/VippsSims";
+import ReactEmail from "./app/ReactEmail";
+import Home from "./app/Home";
+import AdminLandingPage from "./app/AdminLandingPage";
 
 export interface Env {
   DB: D1Database;
