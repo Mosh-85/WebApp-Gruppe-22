@@ -3,7 +3,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
 
   // Name of your worker
-  "name": "__change_me__",
+  "name": "rzvr-app",
 
   // Entry point for your worker
   "main": "src/worker.tsx",
@@ -15,6 +15,7 @@
   // Assets configuration
   "assets": {
     "binding": "ASSETS",
+    "directory": "./dist"
   },
 
   // Observability settings

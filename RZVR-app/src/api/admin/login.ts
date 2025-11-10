@@ -43,9 +43,13 @@ export default async function handler(req: Request) {
       });
     }
 
+
+
+    const db = drizzle(env.DB, { schema });
+
+
     const { username, password } = body as any;
     // Look up staff by email
-    const db = drizzle(env.DB, { schema });
     let user = await db.select().from(staff).where(eq(staff.email, username)).get();
 
     if (!user) {
