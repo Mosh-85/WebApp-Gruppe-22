@@ -29,10 +29,15 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
+    "@types/qrcode": "^1.5.6",
+    "@yudiel/react-qr-scanner": "^2.4.1",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.7",
+    "html-to-image": "^1.11.13",
+    "qrcode": "^1.5.4",
     "react": "19.3.0-canary-4f931700-20251029",
     "react-dom": "19.3.0-canary-4f931700-20251029",
+    "react-qr-code": "^2.0.18",
     "react-server-dom-webpack": "19.3.0-canary-4f931700-20251029",
     "rwsdk": "1.0.0-beta.22",
     "tailwindcss": "^4.1.16"

@@ -12,6 +12,10 @@ import Settings from "./app/pages/admin/Settings";
 import StaffSettings from "./app/pages/admin/StaffSettings";
 import AdminUsersApi from "./api/admin/users";
 import StaffApi from "./api/staff";
+import QrCancelScanner from "./app/pages/admin/QrCancelScanner";
+import CancelFromQrApi from "./api/bookings/cancel-from-qr";
+
+// file location for QR ###################
 
 
 export type AppContext = {};
@@ -22,12 +26,13 @@ export default defineApp([
     // setup ctx here
     ctx;
   },
-
+  // trenger dette ellers så vil den ikke redirekte etter login 
   route("/api/admin/login", (reqInfo: any) => AdminLogin(reqInfo.request)),
   route("/api/admin/me", (reqInfo: any) => AdminMe(reqInfo.request)),
   route("/api/admin/logout", (reqInfo: any) => AdminLogout(reqInfo.request)),
   route("/api/admin/users", (reqInfo: any) => AdminUsersApi(reqInfo.request)),
   route("/api/staff", (reqInfo: any) => StaffApi(reqInfo.request)),
+  route("/api/bookings/cancel-from-qr", (reqInfo: any) => CancelFromQrApi(reqInfo.request)),
 
   render(Document, [
     route("/", Home),
@@ -35,5 +40,7 @@ export default defineApp([
     route("/booking-info", BookingInfo),
     route("/admin/settings", Settings),
     route("/admin/staff-settings", StaffSettings),
+    route("/admin/QrCancelScanner", QrCancelScanner), 
   ]),
 ]);
+//####################### må være lik AdminMenu.tsx og vises i URL bar
