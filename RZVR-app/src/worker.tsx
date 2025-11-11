@@ -1,65 +1,46 @@
 import { defineApp } from "rwsdk/worker";
 import { render, route } from "rwsdk/router";
-import { Document } from "@/app/Document";
-import { Home } from "@/app/pages/Home";
-
-import { User, users } from "./db/schema/user-schema";
+import { Document } from "./app/Document";
 import { setCommonHeaders } from "./app/headers";
-import { env } from "cloudflare:workers";
-import { drizzle } from "drizzle-orm/d1";
+import Home from "./app/pages/Home";
+import AdminPage from "./app/pages/AdminPage";
+import BookingInfo from "./app/pages/BookingInfo";
+import AdminLogin from "./api/admin/login";
+import AdminMe from "./api/admin/me";
+import AdminLogout from "./api/admin/logout";
+import Settings from "./app/pages/admin/Settings";
+import StaffSettings from "./app/pages/admin/StaffSettings";
+import AdminUsersApi from "./api/admin/users";
+import StaffApi from "./api/staff";
+import QrCancelScanner from "./app/pages/admin/QrCancelScanner";
+import CancelFromQrApi from "./api/bookings/cancel-from-qr";
 
-export interface Env {
-  DB: D1Database;
-}
+// file location for QR ###################
 
-export type AppContext = {
-  user: User | undefined;
-  authUrl: string;
-};
+
+export type AppContext = {};
 
 export default defineApp([
   setCommonHeaders(),
+  ({ ctx }: any) => {
+    // setup ctx here
+    ctx;
+  },
+  // trenger dette ellers så vil den ikke redirekte etter login 
+  route("/api/admin/login", (reqInfo: any) => AdminLogin(reqInfo.request)),
+  route("/api/admin/me", (reqInfo: any) => AdminMe(reqInfo.request)),
+  route("/api/admin/logout", (reqInfo: any) => AdminLogout(reqInfo.request)),
+  route("/api/admin/users", (reqInfo: any) => AdminUsersApi(reqInfo.request)),
+  route("/api/staff", (reqInfo: any) => StaffApi(reqInfo.request)),
+  route("/api/bookings/cancel-from-qr", (reqInfo: any) => CancelFromQrApi(reqInfo.request)),
+
   render(Document, [
-    route("/", async () => {
-      const userResult = await drizzle(env.DB).select().from(users);
-      return (
-        <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
-          <h1>Start</h1>
-          <p>Velkommen til eksempel</p>
-          <p>Databasen har {userResult.length} brukere</p>
-          <div style={{ margin: "1.5rem 0" }}>
-            <a
-              href="/home"
-              style={{
-                display: "inline-block",
-                padding: "0.5rem 1rem",
-                background: "#0070f3",
-                color: "white",
-                textDecoration: "none",
-                borderRadius: "4px",
-                fontWeight: "500",
-              }}
-            >
-              Go to Home Page
-            </a>
-          </div>
-          <p style={{ fontSize: "0.875rem", color: "#666" }}>
-            Note: The home page is protected and requires authentication. You
-            will be redirected to login if you're not signed in.
-          </p>
-        </div>
-      );
-    }),
-    route("/home", [
-      ({ ctx }) => {
-        if (!ctx.user) {
-          return new Response(null, {
-            status: 302,
-            headers: { Location: "/" },
-          });
-        }
-      },
-      Home,
-    ]),
+    route("/", Home),
+    route("/admin", AdminPage),
+    route("/booking-info", BookingInfo),
+    route("/admin/settings", Settings),
+    route("/admin/staff-settings", StaffSettings),
+    route("/admin/QrCancelScanner", QrCancelScanner), 
   ]),
 ]);
+//####################### må være lik AdminMenu.tsx og vises i URL bar

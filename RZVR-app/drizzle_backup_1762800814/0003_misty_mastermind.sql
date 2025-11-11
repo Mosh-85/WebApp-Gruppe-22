@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `staff_email_unique` ON `staff` (`email`);

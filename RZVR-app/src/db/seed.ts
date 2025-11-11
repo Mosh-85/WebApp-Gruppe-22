@@ -2,30 +2,30 @@
 
 import { defineScript } from "rwsdk/worker";
 import { drizzle } from "drizzle-orm/d1";
-import { users } from "./schema";
+import { staff } from "./schema";
+import { hashPassword } from "../server/password";
 
 export default defineScript(async ({ env }) => {
   try {
     const db = drizzle(env.DB);
-    await db.delete(users);
 
-    // Insert a user
-    await db.insert(users).values({
-      name: "Test user",
-      email: "test@testuser.io",
+    // Clear existing staff data
+    await db.delete(staff);
+
+    // Create an admin user
+    await db.insert(staff).values({
+      first_name: "Admin",
+      last_name: "User",
+      email: "admin@example.com",
+      password: hashPassword("password"),
+      role: 1,
+      created_at: new Date().toISOString(),
     });
 
-    // Verify the insert by selecting all users
-    const result = await db.select().from(users).all();
-
-    console.log("🌱 Finished seeding");
-
-    return Response.json(result);
+    console.debug("🌱 Finished seeding staff table");
+    return Response.json({ success: true });
   } catch (error) {
     console.error("Error seeding database:", error);
-    return Response.json({
-      success: false,
-      error: "Failed to seed database",
-    });
+    return Response.json({ success: false, error: "Failed to seed database" });
   }
 });
