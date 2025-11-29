@@ -15,3 +15,4 @@ export const bookings = sqliteTable("bookings", {
 });
 
 export type Booking = typeof bookings.$inferSelect;
+export type NewBooking = typeof bookings.$inferInsert
