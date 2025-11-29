@@ -11,12 +11,12 @@ const sqlite = new Database(".wrangler/state/v3/d1/miniflare-D1DatabaseObject/fc
 const db = drizzle(sqlite, { schema });
 
 async function seed() {
-  const hashed = await hashPassword("password");
+  const hashed = await hashPassword("password1");
 
   await db.insert(staff).values({
     first_name: "Admin",
     last_name: "User",
-    email: "admin@example.com",
+    email: "admin1@example.com",
     password: hashed,
     role: 1, // admin role
     created_at: new Date().toISOString(),
