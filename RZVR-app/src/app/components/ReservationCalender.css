@@ -1,0 +1,46 @@
+/* Enkel, “normal” styling – ikke fancy */
+.calendar-page{display:grid;grid-template-columns:2fr 1fr;gap:16px;padding:16px;box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f5f5;color:#111;min-height:100vh}
+@media (max-width:900px){.calendar-page{grid-template-columns:1fr}}
+.top-bar{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px}
+.date-display{font-size:16px;font-weight:600}
+.nav-button{border:1px solid #d1d5db;border-radius:999px;padding:4px 10px;background:#fff;color:#111;font-size:13px;cursor:pointer}
+.nav-button:hover{background:#eee}
+.calendar-card,.selection-panel{background:#fff;border-radius:8px;padding:12px;border:1px solid #e5e7eb}
+.calendar-header{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
+.calendar-header h2{font-size:16px;margin:0}
+.calendar-subtitle{font-size:12px;color:#666}
+.info-banner,.error-banner,.success-banner{font-size:13px;padding:6px 8px;border-radius:4px;margin-bottom:8px}
+.info-banner{background:#eef6ff;border:1px solid #cfe1ff;color:#1d4ed8}
+.error-banner{background:#fff4f4;border:1px solid #ffd6d6;color:#b91c1c}
+.success-banner{background:#ecfdf3;border:1px solid #bbf7d0;color:#166534}
+.error-banner.small,.success-banner.small{margin-top:4px;margin-bottom:4px}
+.calendar-grid{width:100%;overflow-x:auto;border-radius:6px;border:1px solid #e5e7eb;background:#fafafa}
+.header-row{display:grid;grid-template-columns:70px repeat(7,minmax(90px,1fr));border-bottom:1px solid #e5e7eb;background:#f3f4f6}
+.header-cell{padding:6px;font-size:12px;font-weight:500;text-align:center;border-left:1px solid #e5e7eb;white-space:nowrap}
+.header-cell:first-child{border-left:none}
+.header-cell-time{text-align:left;padding-left:8px;color:#666}
+.time-row{display:grid;grid-template-columns:70px repeat(7,minmax(90px,1fr));border-top:1px solid #e5e7eb}
+.cell{border-left:1px solid #e5e7eb;padding:0;box-sizing:border-box}
+.cell:first-child{border-left:none}
+.cell-time{display:flex;align-items:center;justify-content:flex-start;padding-left:8px;font-size:12px;color:#666;background:#fff}
+.cell-slot{position:relative;padding:0;border:none;background:#fff;cursor:pointer;min-height:32px;display:flex;align-items:stretch;justify-content:center}
+.cell-free{background:#fff}
+.cell-reserved{background:#feeaea}
+.cell-selected{outline:2px solid #3b82f6}
+.cell-content{width:100%;padding:4px 6px;display:flex;flex-direction:column;gap:2px;align-items:flex-start;justify-content:center}
+.cell-label{font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:#666}
+.cell-reserved .cell-label{color:#991b1b;font-weight:600}
+.cell-name{font-size:12px;color:#111;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.selection-panel h3{font-size:15px;margin:0}
+.selection-info{font-size:13px;color:#333}
+.booking-form{display:flex;flex-direction:column;gap:8px}
+.form-row{display:flex;gap:8px}
+.form-row label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:#111;flex:1}
+.form-row .full-width{flex:1 1 100%}
+.booking-form input,.status-select{border-radius:4px;border:1px solid #d1d5db;background:#fff;padding:6px 8px;color:#111;font-size:13px;outline:none}
+.booking-form input:focus,.status-select:focus{border-color:#3b82f6}
+.status-select{height:32px}
+@media (max-width:600px){.form-row{flex-direction:column}}
+.primary-button{margin-top:4px;align-self:flex-start;border-radius:999px;border:1px solid #3b82f6;padding:6px 12px;font-size:13px;font-weight:500;background:#3b82f6;color:#fff;cursor:pointer}
+.primary-button:hover{background:#2563eb;border-color:#2563eb}
+.primary-button:disabled{opacity:.7;cursor:default}
