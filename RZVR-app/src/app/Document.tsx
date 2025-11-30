@@ -1,5 +1,6 @@
 import styles from "./styles.css?url";
 
+
 export const Document: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <html lang="en">
     <head>

@@ -12,6 +12,7 @@ import Settings from "./app/pages/admin/Settings";
 import StaffSettings from "./app/pages/admin/StaffSettings";
 import AdminUsersApi from "./api/admin/users";
 import StaffApi from "./api/staff";
+import AdminCalendarPage from "./app/pages/admin/AdminCalenderPage";
 
 
 export type AppContext = {};
@@ -35,5 +36,6 @@ export default defineApp([
     route("/booking-info", BookingInfo),
     route("/admin/settings", Settings),
     route("/admin/staff-settings", StaffSettings),
+      route("/admin/kalender", AdminCalendarPage),
   ]),
 ]);
