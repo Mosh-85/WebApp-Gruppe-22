@@ -8,7 +8,7 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   try {
-    // --- Read raw JSON
+    // --- Read raw JSON (same style as create/delete)
     let rawText = "";
     try {
       rawText = await req.text();
@@ -28,6 +28,7 @@ export default async function handler(req: Request): Promise<Response> {
     }
 
     const id = Number(body.id);
+    const seats = Number(body.seats);
 
     // Validate ID
     if (!id || Number.isNaN(id) || id <= 0) {
@@ -40,23 +41,39 @@ export default async function handler(req: Request): Promise<Response> {
       );
     }
 
-    // Perform delete
+    // Validate seats
+    if (Number.isNaN(seats) || seats < 0) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Ugyldig antall plasser",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Update table
     await db
-      .delete(tables)
+      .update(tables)
+      .set({ seats })
       .where(eq(tables.id, id))
       .run();
 
     return new Response(
       JSON.stringify({
         success: true,
-        deletedId: id,
+        updatedId: id,
+        newSeats: seats,
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (err) {
-    console.error("/api/tables/delete error:", err);
+    console.error("/api/tables/update error:", err);
     return new Response(
-      JSON.stringify({ success: false, error: "Failed to delete table" }),
+      JSON.stringify({
+        success: false,
+        error: "Failed to update table",
+      }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }

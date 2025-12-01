@@ -69,7 +69,7 @@ export default function TableCreateForm() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen p-6">
+    <div className="flex flex-col items-center justify-start bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen p-6">
       <div className="bg-white/90 backdrop-blur-md shadow-2xl rounded-2xl p-10 w-full max-w-md border border-gray-200">
         <h1 className="text-3xl font-bold mb-8 text-center text-gray-900">
           Opprett nytt bord
@@ -135,13 +135,6 @@ export default function TableCreateForm() {
           )}
         </>
       )}
-
-
-      <div className="mt-8 text-center">
-        <button className="px-6 py-2.5 rounded-xl border border-gray-800 bg-gray-900 text-white font-medium hover:bg-gray-800 transition-all duration-200 shadow">
-          Modifiser Bord
-        </button>
-      </div>
     </div>
   );
 }

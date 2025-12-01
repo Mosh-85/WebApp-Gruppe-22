@@ -2,11 +2,11 @@
 
 import Nav from "../../components/Admin/Nav";
 import useAdminSession from "../../components/hooks/useAdminSession";
-import TableCreateForm from "../../components/Table/TableCreateForm";
+import ModifiserBordFunc from "../../components/Table/ModifiserBordFunc";
 
 const settingsMenuItems = [
   { href: "/admin/settings", label: "Tillbake", color: "gray" },
-  { href: "/admin/ModifiserBord", label: "Modifiser Bord", color: "blue" },
+ // { href: "/admin/ModifiserBord", label: "Modifiser Bord", color: "blue" },
 
 ];
 
@@ -51,8 +51,7 @@ export default function Settings() {
           </li>
         ))}
       </ul>
-      <TableCreateForm />
-      
+      <ModifiserBordFunc />
     </nav>
     </div>
   );
