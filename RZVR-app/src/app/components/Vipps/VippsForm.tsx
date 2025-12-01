@@ -12,18 +12,48 @@ export default function VippsForm({ booking }: VippsFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [countdown, setCountdown] = useState(5);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-    const digits = mobile.replace(/\D/g, "");
-    if (digits.length >= 8) {
-      setIsSubmitting(true);
-      setCountdown(5);
-    } else {
-      const el = document.querySelector('input[type="tel"]') as HTMLInputElement | null;
-      el?.focus();
+  // 
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (isSubmitting) return;
+
+  const digits = mobile.replace(/\D/g, "");
+  if (digits.length < 8) {
+    const el = document.querySelector('input[type="tel"]') as HTMLInputElement | null;
+    el?.focus();
+    return;
+  }
+
+  // Start "betalingsanimasjon"
+  setIsSubmitting(true);
+  setCountdown(5);
+
+  // NYTT: send booking til backend slik at den dukker opp i admin-kalenderen
+  if (booking) {
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: booking.fullName,
+          people: booking.people,
+          email: booking.email,
+          date: booking.date,
+          time: booking.time,
+          mobile: digits,
+        }),
+      });
+
+      if (!res.ok) {
+        console.error("Feil ved lagring av booking:", await res.text());
+      }
+    } catch (err) {
+      console.error("Nettverksfeil ved lagring av booking:", err);
     }
-  };
+  } else {
+    console.warn("Ingen booking-data tilgjengelig i VippsForm");
+  }
+};
 
   useEffect(() => {
     if (!isSubmitting) return;
