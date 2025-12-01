@@ -5,7 +5,7 @@ import useAdminSession from "../../components/hooks/useAdminSession";
 
 const settingsMenuItems = [
   { href: "/admin", label: "Tillbake", color: "gray" },
-  { href: "/admin/bord", label: "Opprett bord", color: "blue" },
+  { href: "/admin/OpprettBord", label: "Opprett bord", color: "blue" },
   { href: "/admin/staff-settings", label: "Endre profil", color: "blue" },
 ];
 
