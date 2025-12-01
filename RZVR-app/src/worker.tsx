@@ -14,6 +14,10 @@ import AdminUsersApi from "./api/admin/users";
 import StaffApi from "./api/staff";
 import QrCancelScanner from "./app/pages/admin/QrCancelScanner";
 import CancelFromQrApi from "./api/bookings/cancel-from-qr";
+import OpprettBord from "./app/pages/admin/OpprettBord";
+import NextTableIdApi from "./api/tables/next";
+import CreateTableApi from "./api/tables/create";
+
 
 // file location for QR ###################
 
@@ -33,6 +37,10 @@ export default defineApp([
   route("/api/admin/users", (reqInfo: any) => AdminUsersApi(reqInfo.request)),
   route("/api/staff", (reqInfo: any) => StaffApi(reqInfo.request)),
   route("/api/bookings/cancel-from-qr", (reqInfo: any) => CancelFromQrApi(reqInfo.request)),
+  route("/api/tables/next", (reqInfo: any) => NextTableIdApi(reqInfo.request)),
+  route("/api/tables", (reqInfo: any) => CreateTableApi(reqInfo.request)),
+
+
 
   render(Document, [
     route("/", Home),
@@ -41,6 +49,7 @@ export default defineApp([
     route("/admin/settings", Settings),
     route("/admin/staff-settings", StaffSettings),
     route("/admin/QrCancelScanner", QrCancelScanner), 
+    route("/admin/OpprettBord", OpprettBord), 
   ]),
 ]);
 //####################### må være lik AdminMenu.tsx og vises i URL bar
