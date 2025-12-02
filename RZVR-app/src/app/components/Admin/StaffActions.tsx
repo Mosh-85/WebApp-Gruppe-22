@@ -142,7 +142,7 @@ export default function StaffActions({ staff, refreshList }: StaffActionsProps) 
         </button>
       </div>
 
-      {/* Edit Staff Modal */}
+      {/* Edit Staff */}
       {editingStaff && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
@@ -212,7 +212,7 @@ export default function StaffActions({ staff, refreshList }: StaffActionsProps) 
         </div>
       )}
 
-      {/* Change Password Modal */}
+      {/* Change Password */}
       {passwordChangeId && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">

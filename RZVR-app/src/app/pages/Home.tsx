@@ -35,7 +35,7 @@ export default function Home() {
     }
   }
 
-  // Når bookingData er satt -> vis Vipps-siden (med nedtelling osv)
+  // Når bookingData er satt -> vis Vipps-siden
   if (bookingData) {
     return (
       <div className="min-h-screen bg-gray-50">

@@ -8,7 +8,7 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   try {
-    // --- Read raw JSON
+    // Read raw JSON
     let rawText = "";
     try {
       rawText = await req.text();

@@ -9,7 +9,7 @@ const tables = ["Bord #001", "Bord #002", "Bord #003", "Bord #004", "Bord #005",
 // Timeslottene vi viser
 const timeSlots = ["13:00","14:00" ,"15:00","16:00","17:00","18:00","19:00", "20:00", "21:00", "22:00"];
 
-// ---------- Typer ----------
+// Typer 
 type BookingRow = {
   id: number;
   table_id: number;

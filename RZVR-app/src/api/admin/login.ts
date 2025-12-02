@@ -12,7 +12,6 @@ export default async function handler(req: Request) {
     return new Response(null, { status: 405 });
   }
   try {
-    // Read raw body once (used for parsing). Keep only error logs in production.
     let rawText = "";
     try {
       rawText = await req.text();

@@ -32,7 +32,6 @@ export default function Nav({ onLogout, isAdmin }: NavProps) {
         </a>
       </div>
       <div className="flex items-center gap-4">
-        {/* Show Admin link when on home page, Home link when elsewhere */}
         {isHomePage ? (
           <a href="/admin" className="px-3 py-1 bg-blue-500 text-white rounded" aria-label="Go to Admin">
             Admin

@@ -22,7 +22,7 @@ type UpdateBookingPayload = {
   untilDateTime?: string;
 };
 
-// Hjelper: hent dato i YYYY-MM-DD uansett om vi fikk f.eks. "2025-03-10" eller "2025-03-10T12:00:00Z"
+//Formaterer tidspunkt til dato i YYYY-MM-DD
 function normalizeDateParam(raw: string | null): string | null {
   if (!raw) return null;
   const trimmed = raw.trim();
@@ -41,10 +41,8 @@ export default async function handler(req: Request): Promise<Response> {
   try {
     const url = new URL(req.url);
 
-    // --------------------------------------------------------------------
-    // GET /api/admin/bookings?date=YYYY-MM-DD
-    // Henter ALLE bookinger for en gitt dag (brukes av admin-kalenderen)
-    // --------------------------------------------------------------------
+    /* GET /api/admin/bookings?date=YYYY-MM-DD
+     Henter ALLE bookinger for en gitt dag */
     if (req.method === "GET") {
       const rawDate =
         url.searchParams.get("date") ??
@@ -111,9 +109,7 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
-    // --------------------------------------------------------------------
-    // POST /api/admin/bookings  (kunde lager booking)
-    // --------------------------------------------------------------------
+    /* POST /api/admin/bookings  (kunde lager booking) */
     if (req.method === "POST") {
       let body: CreateBookingPayload;
       try {
@@ -207,9 +203,7 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
-    // --------------------------------------------------------------------
     // PUT /api/admin/bookings  (admin oppdaterer booking)
-    // --------------------------------------------------------------------
     if (req.method === "PUT") {
       let body: UpdateBookingPayload;
       try {
@@ -274,9 +268,8 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
-    // --------------------------------------------------------------------
     // Andre metoder ikke tillatt
-    // --------------------------------------------------------------------
+
     return new Response(null, { status: 405 });
   } catch (err) {
     console.error("/api/admin/bookings error:", err);

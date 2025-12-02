@@ -27,12 +27,12 @@ function route(path: string, handler: any) {
 export default function Settings() {
   const { payload, loading, logout } = useAdminSession();
 
-  // Show loading state while checking authentication
+  // Vis loading state
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
-  // Redirect to login if not authenticated (allow both admin and regular staff)
+  // Redirect hvis ikke logget inn
   if (!payload) {
     window.location.href = "/admin";
     return <div className="min-h-screen flex items-center justify-center">Redirecting...</div>;

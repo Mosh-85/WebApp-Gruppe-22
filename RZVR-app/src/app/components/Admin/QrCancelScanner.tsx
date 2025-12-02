@@ -7,11 +7,11 @@ export default function QrCancelScanner() {
   const [open, setOpen] = useState(false);
   const [result, setResult] = useState<string | null>(null);
 
-  // Correct handler for @yudiel/react-qr-scanner
+  // når en QR-kode blir skannet
   const onScan = async (detectedCodes: IDetectedBarcode[]) => {
-    if (!detectedCodes?.length) return; // nothing detected yet
+    if (!detectedCodes?.length) return; // ingen koder funnet
 
-    const text = detectedCodes[0]?.rawValue; // get actual QR text
+    const text = detectedCodes[0]?.rawValue; // få faktisk QR-tekst
     if (!text) return;
 
     setResult(`Scanned: ${text}`);

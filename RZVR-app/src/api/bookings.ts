@@ -34,7 +34,7 @@ export default async function BookingsApi(req: Request) {
   try {
     const url = new URL(req.url);
 
-    // -------- GET /api/bookings?date=YYYY-MM-DD (for admin-kalenderen) --------
+    // GET /api/bookings?date=YYYY-MM-DD (for admin-kalenderen)
     if (req.method === "GET") {
       const dateParam =
         url.searchParams.get("date") ??
@@ -73,7 +73,7 @@ export default async function BookingsApi(req: Request) {
       return jsonResponse(rows, 200);
     }
 
-    // -------- POST /api/bookings (kunde lager booking) --------
+    // POST /api/bookings (kunde lager booking)
     if (req.method === "POST") {
       const raw = await req.text().catch(() => "");
       let body: CreateBookingPayload;
@@ -108,7 +108,7 @@ export default async function BookingsApi(req: Request) {
       }
       const until = new Date(from.getTime() + 2 * 60 * 60 * 1000); // 2 timer
 
-      // Finn et egnet bord (eller fallback til første/rand 1)
+      // Finn et egnet bord (eller fallback til første 1)
       let tableId = 1;
       try {
         const allTables = await db.select().from(tables).all();
@@ -143,7 +143,7 @@ export default async function BookingsApi(req: Request) {
       return jsonResponse({ success: true }, 201);
     }
 
-    // -------- PUT /api/bookings (admin oppdaterer booking i kalenderen) --------
+    // PUT /api/bookings (admin oppdaterer booking i kalenderen) 
     if (req.method === "PUT") {
       const raw = await req.text().catch(() => "");
       let body: UpdateBookingPayload;

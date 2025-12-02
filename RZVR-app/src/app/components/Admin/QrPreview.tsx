@@ -4,8 +4,8 @@ import { useRef } from "react";
 
 interface QrPreviewProps {
   value: string;
-  label?: string;       // 🧩 optional label like "Bord 004"
-  filename?: string;    // download filename (defaults to "qr-code")
+  label?: string;      
+  filename?: string;    
   showDownload?: boolean;
   size?: number;
 }

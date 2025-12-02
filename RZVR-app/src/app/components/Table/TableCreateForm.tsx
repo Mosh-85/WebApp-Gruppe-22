@@ -6,7 +6,6 @@ export default function TableCreateForm() {
   const [tableId, setTableId] = useState("");
   const [seats, setSeats] = useState<number | "">("");
   const [duplicate, setDuplicate] = useState<number | "">("");
-  //const [qrValue, setQrValue] = useState<string | null>(null);
   const [qrValue, setQrValue] = useState<string[]>([]);
   const [showQR, setShowQR] = useState(false);
     
@@ -36,12 +35,12 @@ export default function TableCreateForm() {
   const qrList: string[] = [];
 
   try {
-    // Run the save + QR generation logic 'count' times
+    // Lager flere bord hvis duplisering verdi er satt
     for (let i = 0; i < count; i++) {
       const res = await fetch("/api/tables", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tableId, seats, duplicate: 1 }), // create 1 per loop
+        body: JSON.stringify({ tableId, seats, duplicate: 1 }),
       });
 
       const data = await res.json();
@@ -54,11 +53,11 @@ export default function TableCreateForm() {
       }
     }
 
-    // ✅ update state
+    //  oppdater state
     setQrValue(qrList);
     setShowQR(true);
 
-    // ✅ refresh next available ID
+    //  oppdater neste tilgjengelige ID
     const next = await fetch("/api/tables/next").then((r) => r.json());
     setTableId(next.nextId);
 
@@ -106,7 +105,7 @@ export default function TableCreateForm() {
 
       {showQR && qrValue.length > 0 && (
         <>
-          {/* When only 1 QR → center it */}
+          {/* Når kun 1 QR → sentrer den */}
           {qrValue.length === 1 ? (
             <div className="mt-10 flex justify-center">
               <QrPreview
@@ -118,7 +117,7 @@ export default function TableCreateForm() {
               />
             </div>
           ) : (
-            // Otherwise show grid
+            // Ellers vis rutenett
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
               {qrValue.map((qr, index) => (
                 <div key={index} className="flex flex-col items-center">

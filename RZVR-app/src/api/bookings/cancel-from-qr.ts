@@ -14,10 +14,10 @@ export default async function handler(req: Request): Promise<Response> {
     try {
       rawText = await req.text();
     } catch (textErr) {
-      // Not fatal; just proceed
+      // just proceed
     }
 
-    // --- Parse JSON
+    // Parse JSON
     let body: any = undefined;
     try {
       body = rawText ? JSON.parse(rawText) : undefined;
@@ -33,7 +33,7 @@ export default async function handler(req: Request): Promise<Response> {
       );
     }
 
-    // --- Validate QR field
+    // Validate QR field
     if (!body || !body.qr) {
       return new Response(
         JSON.stringify({ success: false, message: "Missing QR data" }),
@@ -51,7 +51,7 @@ export default async function handler(req: Request): Promise<Response> {
       );
     }
 
-    // --- Find most recent booking for that table
+    // Find most recent booking for that table
     const active = await db.query.bookings.findFirst({
       where: (b, { eq }) => eq(b.table_id, tableId),
       orderBy: (b, { desc }) => [desc(b.id)],
@@ -78,7 +78,7 @@ export default async function handler(req: Request): Promise<Response> {
       );
     }
 
-    // --- Cancel booking
+    // Cancel booking
     await db
       .update(bookings)
       .set({ status: "cancelled" })

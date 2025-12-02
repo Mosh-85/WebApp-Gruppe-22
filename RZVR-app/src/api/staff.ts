@@ -53,7 +53,7 @@ export default async function StaffApi(req: Request) {
             ...result[0],
             role: Boolean(result[0].role),
           };
-          delete (normalized as any).password; // Don't return password
+          delete (normalized as any).password; 
 
           return new Response(
             JSON.stringify({
@@ -79,9 +79,9 @@ export default async function StaffApi(req: Request) {
 
       case "PUT": {
         const body = (await req.json()) as Partial<Staff> & {
-          id: number; // Make id required for updates
-          password?: string; // For password changes
-          action?: string; // 'update' or 'change-password'
+          id: number; 
+          password?: string; 
+          action?: string; 
         };
 
         if (!body?.id) {

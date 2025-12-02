@@ -134,7 +134,7 @@ export default async function handler(req: Request) {
             headers: { "Content-Type": "application/json" },
           });
         } catch (err: any) {
-          // Map unique-email constraint errors to 409 Conflict
+          // Map unique-email
           const msg = String(err?.message ?? err);
           if (/unique|UNIQUE|constraint failed/i.test(msg)) {
             return new Response(JSON.stringify({ error: "email already exists" }), {

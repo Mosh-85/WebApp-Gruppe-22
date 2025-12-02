@@ -23,7 +23,6 @@ import DeleteTableApi from "./api/tables/delete";
 import UpdateTableApi from "./api/tables/update";
 import AdminCalenderPage from "./app/pages/admin/AdminCalenderPage";
 import BookingsApi from "./api/admin/bookings";
-// file location for QR ###################
 
 
 export type AppContext = {};
@@ -33,8 +32,7 @@ export default defineApp([
   ({ ctx }: any) => {
     // setup ctx here
     ctx;
-  },
-  // trenger dette ellers så vil den ikke redirekte etter login 
+  }, 
   route("/api/admin/login", (reqInfo: any) => AdminLogin(reqInfo.request)),
   route("/api/admin/me", (reqInfo: any) => AdminMe(reqInfo.request)),
   route("/api/admin/logout", (reqInfo: any) => AdminLogout(reqInfo.request)),
@@ -46,10 +44,7 @@ export default defineApp([
   route("/api/tables/list", (reqInfo: any) => ListApi(reqInfo.request)),
   route("/api/tables/delete", (reqInfo) => DeleteTableApi(reqInfo.request)),
   route("/api/tables/update", (reqInfo) => UpdateTableApi(reqInfo.request)),
-   route("/api/admin/bookings", (reqInfo: any) => BookingsApi(reqInfo.request)),
-
-
-
+  route("/api/admin/bookings", (reqInfo: any) => BookingsApi(reqInfo.request)),
 
   render(Document, [
     route("/", Home),
@@ -63,4 +58,3 @@ export default defineApp([
     route("/admin/kalender", AdminCalenderPage),
   ]),
 ]);
-//####################### må være lik AdminMenu.tsx og vises i URL bar

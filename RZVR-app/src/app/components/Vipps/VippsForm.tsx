@@ -63,7 +63,7 @@ export default function VippsForm({ booking }: VippsFormProps) {
         if (c <= 1) {
           window.clearInterval(timerId);
 
-          // 🔽 Build URL with booking data + mobile
+          // Build URL with booking data + mobile
           const params = new URLSearchParams();
 
           if (booking) {

@@ -7,7 +7,7 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   try {
-    // --- Read raw JSON
+    // Read raw JSON
     let rawText = "";
     try {
       rawText = await req.text();
@@ -35,13 +35,13 @@ export default async function handler(req: Request): Promise<Response> {
       .returning({ id: tables.id })
       .get();
 
-    // Build QR payload (same structure React uses)
+    // Build QR payload data
     const qrData = JSON.stringify({
       tableId: inserted.id,
       seats,
     });
 
-    // Insert QR code — FIX: correct column names
+    // Insert QR code
     await db
       .insert(qrcodes)
       .values({
