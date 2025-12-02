@@ -7,7 +7,7 @@ import "./ReservationCalender.css";
 const tables = ["Bord #001", "Bord #002", "Bord #003", "Bord #004", "Bord #005", "Bord #006", "Bord #007"];
 
 // Timeslottene vi viser
-const timeSlots = ["12:00","13:00","14:00" ,"15:00","16:00","17:00","18:00","19:00", "20:00"];
+const timeSlots = ["13:00","14:00" ,"15:00","16:00","17:00","18:00","19:00", "20:00", "21:00", "22:00"];
 
 // ---------- Typer ----------
 type BookingRow = {
@@ -164,8 +164,7 @@ export default function ReservationCalendar() {
     if (!selected) return;
     const base = new Date(selected.from_date_time);
     const [h, m] = newTime.split(":").map(Number);
-    const d = new Date(base);
-    d.setHours(h, m ?? 0, 0, 0);
+    const d = new Date(base.getFullYear(), base.getMonth(), base.getDate(), h, m ?? 0, 0, 0);
     setSelected({ ...selected, [field]: d.toISOString() } as BookingRow);
   }
 

@@ -153,7 +153,7 @@ export default async function handler(req: Request): Promise<Response> {
       const customer_last_name =
         nameParts.length > 1 ? nameParts.slice(1).join(" ") : null;
 
-      const from = new Date(`${date}T${time}:00.000Z`);
+      const from = new Date(`${date}T${time}:00.000`);
       if (Number.isNaN(from.getTime())) {
         return new Response(
           JSON.stringify({ success: false, error: "Ugyldig dato/tid" }),

@@ -2,10 +2,8 @@ import QrCancelScanner from "./QrCancelScanner"; // ✅ this one
 
 const adminMenuItems = [
   { href: "/", label: "Tillbake", color: "gray" },
-  { href: "/admin/reservations", label: "Reservasjoner", color: "blue" },
-  { href: "/admin/kalender", label: "Kalender", color: "blue" },
+  { href: "/admin/kalender", label: "Reservasjon's Kalender", color: "blue" },
   { href: "/admin/settings", label: "Instillinger", color: "blue" },
-  //{ href: "/admin/QrCancelScanner", label: "Skann QR-kode", color: "blue" },
 ];
 
 const getButtonClasses = (color: string) => {

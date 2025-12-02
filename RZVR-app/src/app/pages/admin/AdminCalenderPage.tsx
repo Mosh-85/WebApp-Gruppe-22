@@ -5,7 +5,7 @@ import useAdminSession from "../../components/hooks/useAdminSession";
 import ReservationCalendar from "../../components/ReservationCalender"; // adjust path if needed
 
 const menuItems = [
-  { href: "/admin/settings", label: "Tilbake", color: "gray" },
+  { href: "/admin", label: "Tilbake", color: "gray" },
 ];
 
 const getButtonClasses = (color: string) => {

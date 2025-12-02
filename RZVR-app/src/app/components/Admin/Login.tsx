@@ -86,7 +86,8 @@ export default function Login({ onSuccess }: LoginProps) {
         {loading ? "Logger inn..." : "Logg inn"}
       </button>
       <div className="mt-4 text-sm text-gray-500 text-center">
-        Development tip: use <code className="bg-gray-100 px-1 rounded">admin@example.com</code> / <code className="bg-gray-100 px-1 rounded">password</code>
+        Development tip: use <code className="bg-gray-100 px-1 rounded">admin@example.com</code> / <code className="bg-gray-100 px-1 rounded">password</code> <br />
+        Development tip: use <code className="bg-gray-100 px-1 rounded">serv@example.com</code> / <code className="bg-gray-100 px-1 rounded">password</code>
       </div>
     </form>
   );
