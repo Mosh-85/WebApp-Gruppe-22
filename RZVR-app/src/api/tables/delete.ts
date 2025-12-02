@@ -45,8 +45,8 @@ export default async function handler(req: Request): Promise<Response> {
 
     await db.delete(tables).where(eq(tables.id, id)).run();
     // Reset autoincrement counters using the raw D1 client
-    await db.$client.exec("DELETE FROM sqlite_sequence WHERE name = 'tables'");
-    await db.$client.exec("DELETE FROM sqlite_sequence WHERE name = 'qrcodes'");
+    await db.$client.exec(`DELETE FROM sqlite_sequence WHERE name = 'tables'`);
+    await db.$client.exec(`DELETE FROM sqlite_sequence WHERE name = 'qrcodes'`);
 
     return new Response(
       JSON.stringify({
