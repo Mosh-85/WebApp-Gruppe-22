@@ -36,16 +36,15 @@ export default function Login({ onSuccess }: LoginProps) {
           payload = body?.payload ?? null;
         }
       } catch (e) {
-        // ignore
+        // ignore errors
       }
       if (typeof onSuccess === "function") {
         try {
           onSuccess(payload);
         } catch (e) {
-          /* ignore */
+          // ignore errors
         }
       } else {
-        // redirect to /admin
         window.location.href = "/admin";
       }
     } catch (err: any) {

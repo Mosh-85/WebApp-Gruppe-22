@@ -11,12 +11,10 @@ export default function StaffSettings() {
   const { payload, loading, logout } = useAdminSession();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-  // Show loading state while checking authentication
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
-  // Redirect to login if not authenticated (allow both admin and regular staff)
   if (!payload) {
     window.location.href = "/admin";
     return <div className="min-h-screen flex items-center justify-center">Redirecting...</div>;
