@@ -7,7 +7,7 @@ import "./ReservationCalender.css";
 const tables = ["Bord #001", "Bord #002", "Bord #003", "Bord #004", "Bord #005", "Bord #006", "Bord #007"];
 
 // Timeslottene vi viser
-const timeSlots = ["18:00", "18:30", "19:00", "19:30", "20:00"];
+const timeSlots = ["12:00","13:00","14:00" ,"15:00","16:00","17:00","18:00","19:00", "20:00"];
 
 // ---------- Typer ----------
 type BookingRow = {
