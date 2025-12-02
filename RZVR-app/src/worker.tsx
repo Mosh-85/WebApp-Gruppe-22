@@ -22,8 +22,7 @@ import ListApi from "./api/tables/list";
 import DeleteTableApi from "./api/tables/delete";
 import UpdateTableApi from "./api/tables/update";
 import AdminCalenderPage from "./app/pages/admin/AdminCalenderPage";
- import BookingsApi from "./api/bookings";
-
+import BookingsApi from "./api/admin/bookings";
 // file location for QR ###################
 
 
@@ -41,13 +40,13 @@ export default defineApp([
   route("/api/admin/logout", (reqInfo: any) => AdminLogout(reqInfo.request)),
   route("/api/admin/users", (reqInfo: any) => AdminUsersApi(reqInfo.request)),
   route("/api/staff", (reqInfo: any) => StaffApi(reqInfo.request)),
-  route("/api/bookings", (reqInfo: any) => BookingsApi(reqInfo.request)),
   route("/api/bookings/cancel-from-qr", (reqInfo: any) => CancelFromQrApi(reqInfo.request)),
   route("/api/tables/next", (reqInfo: any) => NextTableIdApi(reqInfo.request)),
   route("/api/tables", (reqInfo: any) => CreateTableApi(reqInfo.request)),
   route("/api/tables/list", (reqInfo: any) => ListApi(reqInfo.request)),
   route("/api/tables/delete", (reqInfo) => DeleteTableApi(reqInfo.request)),
   route("/api/tables/update", (reqInfo) => UpdateTableApi(reqInfo.request)),
+   route("/api/admin/bookings", (reqInfo: any) => BookingsApi(reqInfo.request)),
 
 
 

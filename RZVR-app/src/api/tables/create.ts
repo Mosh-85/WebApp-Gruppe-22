@@ -1,6 +1,5 @@
 import { db } from "../../db/index";
-import { tables } from "../../db/schema";
-import { eq } from "drizzle-orm";
+import { tables, qrcodes } from "../../db/schema";
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
@@ -27,36 +26,42 @@ export default async function handler(req: Request): Promise<Response> {
       );
     }
 
-    const id = Number(body.id);
+    const seats = Number(body.seats) || 0;
 
-    // Validate ID
-    if (!id || Number.isNaN(id) || id <= 0) {
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: "Ugyldig ID",
-        }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
-    }
+    // Insert table
+    const inserted = await db
+      .insert(tables)
+      .values({ seats, status: "active" })
+      .returning({ id: tables.id })
+      .get();
 
-    // Perform delete
+    // Build QR payload (same structure React uses)
+    const qrData = JSON.stringify({
+      tableId: inserted.id,
+      seats,
+    });
+
+    // Insert QR code — FIX: correct column names
     await db
-      .delete(tables)
-      .where(eq(tables.id, id))
+      .insert(qrcodes)
+      .values({
+        table_id: inserted.id,
+        qr_data: qrData,
+      })
       .run();
 
     return new Response(
       JSON.stringify({
         success: true,
-        deletedId: id,
+        tableId: inserted.id,
+        qrData,
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
-  } catch (err) {
-    console.error("/api/tables/delete error:", err);
+  } catch (err: any) {
+    console.error("/api/tables/create error:", err);
     return new Response(
-      JSON.stringify({ success: false, error: "Failed to delete table" }),
+      JSON.stringify({ success: false, error: "Failed to insert table" }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }

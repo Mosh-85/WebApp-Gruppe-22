@@ -7,7 +7,7 @@ import "./ReservationCalender.css";
 const tables = ["Bord #001", "Bord #002", "Bord #003", "Bord #004", "Bord #005", "Bord #006", "Bord #007"];
 
 // Timeslottene vi viser
-const timeSlots = ["18:00", "18:30", "19:00", "19:30", "20:00"];
+const timeSlots = ["13:00","14:00" ,"15:00","16:00","17:00","18:00","19:00", "20:00", "21:00", "22:00"];
 
 // ---------- Typer ----------
 type BookingRow = {
@@ -88,7 +88,7 @@ export default function ReservationCalendar() {
       setSaveMsg(null);
       try {
         const d = ymd(date);
-        const res = await fetch(`/api/bookings?date=${d}`);
+        const res = await fetch(`/api/admin/bookings?date=${d}`);
         if (!res.ok) throw new Error(`Henting feilet (${res.status})`);
         const data = (await res.json()) as BookingRow[];
         setRows(data);
@@ -140,7 +140,7 @@ export default function ReservationCalendar() {
         untilDateTime: selected.until_date_time,
       };
 
-      const res = await fetch("/api/bookings", {
+      const res = await fetch("/api/admin/bookings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -149,7 +149,7 @@ export default function ReservationCalendar() {
       setSaveMsg("Lagret ✅");
 
       // refresh dagens data
-      const refreshed = await fetch(`/api/bookings?date=${ymd(date)}`);
+      const refreshed = await fetch(`/api/admin/bookings?date=${ymd(date)}`);
       setRows((await refreshed.json()) as BookingRow[]);
       // oppdater valgt booking-objekt med respons om du vil
     } catch (e: any) {
@@ -164,8 +164,7 @@ export default function ReservationCalendar() {
     if (!selected) return;
     const base = new Date(selected.from_date_time);
     const [h, m] = newTime.split(":").map(Number);
-    const d = new Date(base);
-    d.setHours(h, m ?? 0, 0, 0);
+    const d = new Date(base.getFullYear(), base.getMonth(), base.getDate(), h, m ?? 0, 0, 0);
     setSelected({ ...selected, [field]: d.toISOString() } as BookingRow);
   }
 

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import useAdminSession from "../hooks/useAdminSession";
 
-// Form data type (excluding auto-generated fields)
 interface StaffFormData {
   first_name: string;
   last_name: string;

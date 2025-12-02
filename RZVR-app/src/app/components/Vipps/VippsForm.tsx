@@ -57,11 +57,32 @@ export default function VippsForm({ booking }: VippsFormProps) {
 
   useEffect(() => {
     if (!isSubmitting) return;
+
     const timerId = window.setInterval(() => {
       setCountdown((c) => {
         if (c <= 1) {
           window.clearInterval(timerId);
-          window.location.href = "/booking-info";
+
+          // 🔽 Build URL with booking data + mobile
+          const params = new URLSearchParams();
+
+          if (booking) {
+            Object.entries(booking).forEach(([key, value]) => {
+              if (typeof value === "string") {
+                params.set(key, value);
+              }
+            });
+          }
+
+          if (mobile) {
+            params.set("mobile", mobile.replace(/\D/g, ""));
+          }
+
+          const query = params.toString();
+          window.location.href = query
+            ? `/booking-info?${query}`
+            : "/booking-info";
+
           return 0;
         }
         return c - 1;
@@ -69,7 +90,7 @@ export default function VippsForm({ booking }: VippsFormProps) {
     }, 1000);
 
     return () => window.clearInterval(timerId);
-  }, [isSubmitting]);
+  }, [isSubmitting, booking, mobile]);
 
   if (isSubmitting) {
     return (
@@ -103,7 +124,11 @@ export default function VippsForm({ booking }: VippsFormProps) {
         <button
           type="submit"
           disabled={!isValid || isSubmitting}
-          className={`mt-4 w-full p-2 text-white rounded ${!isValid || isSubmitting ? "bg-gray-300 cursor-not-allowed" : "bg-green-500 hover:brightness-90"}`}
+          className={`mt-4 w-full p-2 text-white rounded ${
+            !isValid || isSubmitting
+              ? "bg-gray-300 cursor-not-allowed"
+              : "bg-green-500 hover:brightness-90"
+          }`}
         >
           Bekrefte med Vipps
         </button>

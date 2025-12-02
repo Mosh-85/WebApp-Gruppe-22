@@ -1,6 +1,5 @@
 "use client";
 
-// import NotesPage from "./Notes";
 import Login from "../components/Admin/Login";
 import Nav from "../components/Admin/Nav";
 import useAdminSession from "../components/hooks/useAdminSession";
