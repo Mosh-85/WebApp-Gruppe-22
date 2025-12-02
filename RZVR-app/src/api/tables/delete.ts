@@ -1,5 +1,5 @@
 import { db } from "../../db/index";
-import { tables } from "../../db/schema";
+import { qrcodes, tables } from "../../db/schema";
 import { eq } from "drizzle-orm";
 
 export default async function handler(req: Request): Promise<Response> {
@@ -41,10 +41,10 @@ export default async function handler(req: Request): Promise<Response> {
     }
 
     // Perform delete
-    await db
-      .delete(tables)
-      .where(eq(tables.id, id))
-      .run();
+    await db.delete(qrcodes).where(eq(qrcodes.table_id, id)).run();
+
+    await db.delete(tables).where(eq(tables.id, id)).run();
+
 
     return new Response(
       JSON.stringify({
