@@ -65,7 +65,7 @@ export default function AdminCalenderPage() {
           ))}
         </ul>
 
-        {/* 👇 Her vises kalenderen */}
+        {/* Her vises kalenderen */}
         <div className="max-w-6xl mx-auto">
           <ReservationCalendar />
         </div>

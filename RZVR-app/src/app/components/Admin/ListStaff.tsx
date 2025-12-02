@@ -18,7 +18,6 @@ export default function ListStaff({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch staff list
   const fetchStaff = async () => {
     setLoading(true);
     setError(null);

@@ -88,7 +88,6 @@ export default async function handler(req: Request) {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
-    // set HttpOnly cookie using session helper
     res.headers.append("Set-Cookie", createSessionHeader(tokenPayload, 60 * 60 * 6));
     return res;
   } catch (e: any) {
